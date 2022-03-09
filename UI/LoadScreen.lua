@@ -191,13 +191,13 @@ function OnLoadScreenContentReady()
 	local playerConfig		:table = PlayerConfigurations[localPlayer];
 	
 	local primaryColor, secondaryColor  = UI.GetPlayerColors( localPlayer );
+    local playerIsSpectator = playerConfig ~= nil and playerConfig:GetLeaderTypeName() == "LEADER_SPECTATOR";
+    local isTournamentGame = GameConfiguration.GetValue("MPH_OFFICIAL_GAME") ~= nil and GameConfiguration.GetValue("MPH_OFFICIAL_GAME") == true;
 
-	if playerConfig ~= nil then
-		if playerConfig:GetLeaderTypeName() == "LEADER_SPECTATOR" then
-			primaryColor = UI.GetColorValueFromHexLiteral(0xff99aaaa);
-			secondaryColor = UI.GetColorValueFromHexLiteral(0xffaa9999);
-		end
-	end
+    if playerIsSpectator then
+        primaryColor = UI.GetColorValueFromHexLiteral(0xff99aaaa);
+        secondaryColor = UI.GetColorValueFromHexLiteral(0xffaa9999);
+    end
 
 	if primaryColor == nil then
 		primaryColor = UI.GetColorValueFromHexLiteral(0xff99aaaa);
@@ -208,7 +208,7 @@ function OnLoadScreenContentReady()
 		UI.DataError("NIL secondary color; likely player object not ready... using default color.");
 	end
 
-	local backColor						= UI.DarkenLightenColor(primaryColor, DARKEN_AMOUNT, 255);
+	local backColor	= UI.DarkenLightenColor(primaryColor, DARKEN_AMOUNT, 255);
 	Controls.Banner:SetColor(backColor);
 	
 	if playerConfig == nil then
@@ -225,7 +225,11 @@ function OnLoadScreenContentReady()
 		else
 			backgroundTexture = leaderType .. "_BACKGROUND";
 		end
-	
+		if isTournamentGame then
+		    if GameConfiguration.GetValue("MPH_PRESET") == 3 then
+		        backgroundTexture = "BSM_LoadingBG_CivFR.dds";
+		    end
+		end
 		Controls.BackgroundImage:SetTexture( backgroundTexture );
 		if (not Controls.BackgroundImage:HasTexture()) then
 			UI.DataError("Failed to load background image texture: "..backgroundTexture);
@@ -429,13 +433,18 @@ function OnLoadScreenContentReady()
 			instance.Description:SetText(Locale.Lookup(item.Description));
 		end
 		
-		if playerConfig:GetLeaderTypeName() == "LEADER_SPECTATOR" then
+		if playerIsSpectator or isTournamentGame then
 			Controls.MiddleSectionContainer:SetHide(true)
 			Controls.MiddleSectionContainerSpectator:SetHide(false)
 			local tournamentName = GameConfiguration.GetValue("BSM_TOURNAMENT");
-			if tournamentName ~= nil and tournamentName ~= "" then
-				Controls.TournamentName:SetText(tostring(tournamentName))
+			if tournamentName == nil or tournamentName == "" then
+				if playerIsSpectator then
+				    tournamentName = "SPECTATED GAME";
+                else
+                    tournamentName = "UNNAMED TOURNAMENT";
+                end
 			end
+			Controls.TournamentName:SetText(tostring(tournamentName))
 			local team1Name = GameConfiguration.GetValue("BSM_TEAM1");
 			local team2Name = GameConfiguration.GetValue("BSM_TEAM2");
 			if team1Name ~= nil and team1Name ~= "" then
@@ -447,6 +456,9 @@ function OnLoadScreenContentReady()
 			local sstr = tostring(PlayerConfigurations[localPlayer]:GetPlayerName())
 			if sstr == "LOC_LEADER_SPECTATOR_NAME" then
 				sstr = "Almighty Observer"
+			end
+			if not playerIsSpectator then
+			    Controls.ObservedByLabel:SetText("PLAYED BY:");
 			end
 			Controls.Spec_Label:SetText(sstr)
 			local input = MapConfiguration.GetValue("MAP_SCRIPT");

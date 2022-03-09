@@ -63,7 +63,7 @@
 							<Label ID="SPlayer_15Label" Style="FontNormal14" FontStyle="Shadow" ColorSet="ServerColumnHeader" Anchor="C,T"  Offset="-400,525" String="Player 1" Hidden="1" />
 							<Image ID="SPlayer_15" Icon="ICON_LEADER_DEFAULT" Size="100,100" Offset="-400,550" Hidden="1" Anchor="C,T"/>								
 							
-							<Label	Anchor="C,T" Offset="0,90"		Style="FontFlair14"		String="OBSERVED BY:" SmallCapsType="EveryWord" SmallCaps="20" />
+							<Label ID="ObservedByLabel" Anchor="C,T" Offset="0,90"		Style="FontFlair14"		String="OBSERVED BY:" SmallCapsType="EveryWord" SmallCaps="20" />
 							<Line		Start="140,0"	 End="400,0"	Offset="60,112"		Width="2"							Color="200,200,200,100" />
 							<Label ID="Spec_Label" Style="FontFlair14" ColorSet="ServerColumnHeader" Anchor="C,T"  Offset="0,120" SmallCapsType="EveryWord" SmallCaps="20" />
 							<Label	Anchor="C,T" Offset="0,200"		Style="FontFlair14"		String="SETTINGS:" SmallCapsType="EveryWord" SmallCaps="20" />

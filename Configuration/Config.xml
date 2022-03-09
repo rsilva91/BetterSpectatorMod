@@ -1,5 +1,6 @@
 <GameInfo>
 	<RulesetUnSupportedValues>
+		<Row Ruleset="RULESET_EXPANSION_2" PlayerId="4" Domain="Players:Expansion2_Players" Value="LEADER_SPECTATOR"/>
 		<Row Ruleset="RULESET_EXPANSION_2" PlayerId="5" Domain="Players:Expansion2_Players" Value="LEADER_SPECTATOR"/>
 		<Row Ruleset="RULESET_EXPANSION_2" PlayerId="6" Domain="Players:Expansion2_Players" Value="LEADER_SPECTATOR"/>
 		<Row Ruleset="RULESET_EXPANSION_2" PlayerId="7" Domain="Players:Expansion2_Players" Value="LEADER_SPECTATOR"/>
