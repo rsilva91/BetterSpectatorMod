@@ -230,6 +230,10 @@ function OnLoadScreenContentReady()
 		        backgroundTexture = "BSM_LoadingBG_CivFR.dds";
 		    end
 		end
+		if GameConfiguration.GetValue("GAMEMODE_ZEVENT2022") ~= nil and GameConfiguration.GetValue("GAMEMODE_ZEVENT2022") == true then
+			backgroundTexture = "BSM_LoadingBG_ZEvent.dds";
+		end
+
 		Controls.BackgroundImage:SetTexture( backgroundTexture );
 		if (not Controls.BackgroundImage:HasTexture()) then
 			UI.DataError("Failed to load background image texture: "..backgroundTexture);
