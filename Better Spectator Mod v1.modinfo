@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Mod id="c6e5ad32-0600-4a98-a7cd-5854a1abcaaf" version="121">
+<Mod id="c6e5ad32-0600-4a98-a7cd-5854a1abcaaf" version="123">
     <Properties>
         <Name>LOC_BSM_TITLE</Name>
         <Description>Allows to play as an Observer. [NEWLINE]In the lobby players in the top 4 slots can choose the Spectator leader. [NEWLINE] In game use the diplomacy ribbon to click on leader and gain their POV and more.
@@ -9,13 +9,13 @@
         <Authors>D. / Jack The Narrator</Authors>
         <SpecialThanks>Civfanatics.com, CPL, Gedemon, Sukritact, Zur13, Je, DELUXEPhilipe, Malm, Michael</SpecialThanks>
         <CompatibleVersions>1.2,2.0</CompatibleVersions>
-        <Version>121</Version>
+        <Version>123</Version>
     </Properties>
 
     <LocalizedText>
         <Text id="LOC_BSM_TITLE">
-            <en_US>Better Spectator Mod v1.2.1</en_US>
-            <fr_FR>Better Spectator Mod v1.2.1</fr_FR>
+            <en_US>Better Spectator Mod v1.2.3</en_US>
+            <fr_FR>Better Spectator Mod v1.2.3</fr_FR>
         </Text>
         <Text id="LOC_BSM_TEASER">
             <en_US>Allows to play as an Observer</en_US>
@@ -51,6 +51,7 @@
         <ImportFiles>
             <File>Art/BSM_LoadingBG_CivFR.dds</File>
             <File>Art/BSM_LoadingBG_ZEvent.dds</File>
+            <File>Art/BSM_LoadingBG_CWC.dds</File>
         </ImportFiles>
         <UpdateColors id="GameplayColors">
             <Criteria>LeaderCriteria</Criteria>
@@ -301,5 +302,6 @@
 
         <File>Art/BSM_LoadingBG_CivFR.dds</File>
         <File>Art/BSM_LoadingBG_ZEvent.dds</File>
+        <File>Art/BSM_LoadingBG_CWC.dds</File>
     </Files>
 </Mod>

@@ -226,6 +226,9 @@ function OnLoadScreenContentReady()
 			backgroundTexture = leaderType .. "_BACKGROUND";
 		end
 		if isTournamentGame then
+			if GameConfiguration.GetValue("MPH_PRESET") == 1 then
+		        backgroundTexture = "BSM_LoadingBG_CWC.dds";
+		    end
 		    if GameConfiguration.GetValue("MPH_PRESET") == 3 then
 		        backgroundTexture = "BSM_LoadingBG_CivFR.dds";
 		    end
