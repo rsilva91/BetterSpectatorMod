@@ -1,21 +1,24 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Mod id="c6e5ad32-0600-4a98-a7cd-5854a1abcaaf" version="123">
+<?xml version="1.0" encoding="utf-8"?>
+<!--Live BSM-->
+<!--<Mod id="c6e5ad32-0600-4a98-a7cd-5854a1abcaaf" version="123">-->
+<!--Test BSM-->
+<Mod id="8e1c6708-e129-4f42-870f-ba09f16eca78" version="125">
     <Properties>
         <Name>LOC_BSM_TITLE</Name>
         <Description>Allows to play as an Observer. [NEWLINE]In the lobby players in the top 4 slots can choose the Spectator leader. [NEWLINE] In game use the diplomacy ribbon to click on leader and gain their POV and more.
         </Description>
         <Created>1</Created>
         <Teaser>LOC_BSM_TEASER</Teaser>
-        <Authors>D. / Jack The Narrator</Authors>
+        <Authors>D. / Jack The Narrator, FlashyFeeds</Authors>
         <SpecialThanks>Civfanatics.com, CPL, Gedemon, Sukritact, Zur13, Je, DELUXEPhilipe, Malm, Michael</SpecialThanks>
         <CompatibleVersions>1.2,2.0</CompatibleVersions>
-        <Version>123</Version>
+        <Version>125</Version>
     </Properties>
 
     <LocalizedText>
         <Text id="LOC_BSM_TITLE">
-            <en_US>Better Spectator Mod v1.2.3</en_US>
-            <fr_FR>Better Spectator Mod v1.2.3</fr_FR>
+            <en_US>Better Spectator Mod v1.2.5(Test)</en_US>
+            <fr_FR>Better Spectator Mod v1.2.5(Test)</fr_FR>
         </Text>
         <Text id="LOC_BSM_TEASER">
             <en_US>Allows to play as an Observer</en_US>
@@ -51,7 +54,6 @@
         <ImportFiles>
             <File>Art/BSM_LoadingBG_CivFR.dds</File>
             <File>Art/BSM_LoadingBG_ZEvent.dds</File>
-            <File>Art/BSM_LoadingBG_CWC.dds</File>
         </ImportFiles>
         <UpdateColors id="GameplayColors">
             <Criteria>LeaderCriteria</Criteria>
@@ -76,6 +78,12 @@
             <File>SPECTATOR_Religious.sql</File>
         </UpdateDatabase>
 
+        <UpdateDatabase id = "WritingBoostFix">
+            <Properties>
+                <LoadOrder>9999</LoadOrder>
+            </Properties>
+            <File>Data/Spectator.sql</File>
+        </UpdateDatabase>
 
         <AddUserInterfaces>
             <Properties>
@@ -162,6 +170,13 @@
                 <LuaReplace>UI/Replacements/worldinput_spec.lua</LuaReplace>
             </Properties>
         </ReplaceUIScript>
+
+        <ImportFiles id="Spectator_UI_events">
+            <Properties>
+                <LoadOrder>9999</LoadOrder>
+            </Properties>
+            <File>UI/Spectator_UI.lua</File>
+        </ImportFiles>
 
         <ImportFiles id="Spectator_ToolTipHelper_PlayerYields">
             <Properties>
@@ -286,6 +301,8 @@
         <File>UI/Replacements/unitpanel_spec.lua</File>
         <File>UI/Replacements/worldinput_spec.lua</File>
         <File>UI/Replacements/worldtracker.lua</File>
+
+        <File>Data/Spectator.sql</File>
 
         <File>Configuration/Config.xml</File>
         <File>Configuration/Config_Beta.xml</File>
