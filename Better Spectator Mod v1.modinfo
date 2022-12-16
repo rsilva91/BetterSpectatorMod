@@ -54,6 +54,7 @@
         <ImportFiles>
             <File>Art/BSM_LoadingBG_CivFR.dds</File>
             <File>Art/BSM_LoadingBG_ZEvent.dds</File>
+            <File>Art/BSM_LoadingBG_TwoVITwo.dds</File>
         </ImportFiles>
         <UpdateColors id="GameplayColors">
             <Criteria>LeaderCriteria</Criteria>
@@ -320,5 +321,6 @@
         <File>Art/BSM_LoadingBG_CivFR.dds</File>
         <File>Art/BSM_LoadingBG_ZEvent.dds</File>
         <File>Art/BSM_LoadingBG_CWC.dds</File>
+        <File>Art/BSM_LoadingBG_TwoVITwo.dds</File>
     </Files>
 </Mod>
