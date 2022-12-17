@@ -17,8 +17,8 @@
 
     <LocalizedText>
         <Text id="LOC_BSM_TITLE">
-            <en_US>Better Spectator Mod v1.2.5(Test)</en_US>
-            <fr_FR>Better Spectator Mod v1.2.5(Test)</fr_FR>
+            <en_US>Better Spectator Mod v1.2.5</en_US>
+            <fr_FR>Better Spectator Mod v1.2.5</fr_FR>
         </Text>
         <Text id="LOC_BSM_TEASER">
             <en_US>Allows to play as an Observer</en_US>
