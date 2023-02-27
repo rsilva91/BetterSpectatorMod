@@ -99,7 +99,8 @@ ExposedMembers.LuaEvents = LuaEvents
 
 local bLaunch = false;
 local spec_num = 0
-local g_version = "v1.15"
+local g_version = "v1.24"
+
 
 function Spec_Script_Init()
 		local currentTurn = Game.GetCurrentGameTurn();
@@ -110,6 +111,18 @@ function Spec_Script_Init()
 		spec_num = 0
 		iNumMajCivs = PlayerManager.GetAliveMajorsCount();
 		MajorList = PlayerManager.GetAliveMajorIDs();
+		local MajorListNoSpec = {}
+		if Game:GetProperty("TO_CHECK")~=nil then
+			MajorListNoSpec = Game:GetProperty("TO_CHECK")
+			print(ArrayStrUtil(MajorListNoSpec))
+		else
+			MajorListNoSpec = PlayerManager.GetAliveMajorIDs()
+			print(ArrayStrUtil(MajorListNoSpec))
+			--Game:SetProperty("TO_CHECK",MajorList)
+			filterArray(MajorListNoSpec, function(t,i,j) local v = t[i] return PlayerConfigurations[v]:GetLeaderTypeName()~="LEADER_SPECTATOR" end)
+			print(ArrayStrUtil(MajorListNoSpec))
+		end
+		Game:SetProperty("TO_CHECK", MajorListNoSpec)
 		print("Turn ",currentTurn,": Local player Leader:", PlayerConfigurations[Game.GetLocalPlayer()]:GetLeaderTypeName()," ID:",Game.GetLocalPlayer());
 		for i = 1, iNumMajCivs do
 			local sPlayerLeaderName = PlayerConfigurations[MajorList[i]]:GetLeaderTypeName();
@@ -168,8 +181,8 @@ function Spec_Script_Init()
 				end
 				--print("GameInfo.Civics[DIPLOMATIC_SERVICE].Index",GameInfo.Civics["CIVIC_DIPLOMATIC_SERVICE"].Index)
 				--pPlayerCulture:ReverseBoost(GameInfo.Civics["CIVIC_DIPLOMATIC_SERVICE"].Index)
-				local pPlayerTechs:table = Players[MajorList[i]]:GetTechs();
-				pPlayerTechs:ReverseBoost(GameInfo.Technologies["TECH_WRITING"].Index)
+				--local pPlayerTechs:table = Players[MajorList[i]]:GetTechs();
+				--pPlayerTechs:ReverseBoost(GameInfo.Technologies["TECH_WRITING"].Index)
 			end
 			pPlayerCulture = Players[Game:GetProperty("SPEC_ID_"..k)]:GetCulture()
 			pPlayerCulture:SetCivic(GameInfo.Civics["CIVIC_CODE_OF_LAWS"].Index,true)
@@ -190,7 +203,7 @@ function CleanBoost()
 	end
 end
 
-LuaEvents.UICleanBoost.Add ( CleanBoost );
+--LuaEvents.UICleanBoost.Add ( CleanBoost );
 
 function DoObserver(id)
 	if ( Game:GetProperty("SPEC_NUM") ~= nil ) then
@@ -298,7 +311,152 @@ function OnPlayerTurnActivated()
 
 end
 
+function OnHostWritingUpdate(triggerplayerID, kParameters)
+	print("Writing boost triggered in Gameplay from "..tostring(triggerplayerID).." UI Host")
+	GameEvents.ApplyWritingBoost.Call(triggerplayerID, kParameters)
+end
 
+LuaEvents.HostWritingUpdate.Add(OnHostWritingUpdate)
+
+function OnHostPopCheckList(triggerplayerID, kParameters)
+	print("Pop CheckList triggered in Gameplay from "..tostring(triggerplayerID).." UI Host")
+	GameEvents.PopCheckList.Call(triggerplayerID, kParameters)
+end
+
+LuaEvents.HostPopCheckList.Add(OnHostPopCheckList)
+
+function OnApplyWritingBoost(triggerplayerID, kParameters)
+	print("Writing boost triggered in Gameplay from "..tostring(triggerplayerID).." UI Request")			
+	for i,playerID in ipairs(kParameters.value) do
+		TriggerWritingBoost(playerID, false)
+	end
+end
+
+function OnGameTurnStartedRecalculate(playerID)
+	print("OnGameTurnStartedRecalculate triggered")
+	local MajorList:table = {}
+	local iNumMajCivs = PlayerManager.GetAliveMajorsCount();
+	MajorList = PlayerManager.GetAliveMajorIDs()
+	local list = Game:GetProperty("TO_CHECK")
+	if list == nil or list == {} then
+		for i=1,iNumMajCivs do
+			print((Players[MajorList[i]]:GetTechs():HasBoostBeenTriggered(GameInfo.Technologies["TECH_WRITING"].Index) or Players[MajorList[i]]:GetTechs():HasTech(GameInfo.Technologies["TECH_WRITING"].Index)))
+		end
+		LuaEvents.HostWritingUpdate.Remove(OnHostWritingUpdate)
+		print("HostWriting removed")
+		GameEvents.ApplyWritingBoost.Remove(OnApplyWritingBoost)
+		print("ApplyWritingBoost removed")
+		LuaEvents.HostPopCheckList.Remove(OnHostPopCheckList)
+		print("OnHostPopCheckList removed")
+		GameEvents.PopCheckList.Remove(OnPopCheckList)
+		print("OnPopCheckList removed")
+		ExposedMembers.FreeUIHooks()
+		print("UIHooks removed")
+		GameEvents.OnGameTurnStarted.Remove(OnGameTurnStartedRecalculate)
+		print("OnGameTurnStartedRecalculate removed")
+		return
+	end 
+	
+	for i, pID in ipairs(list) do
+		local pPlayer = Players[pID] 
+		for j = 1, iNumMajCivs do
+			if PlayerConfigurations[MajorList[j]]:GetLeaderTypeName() ~= "LEADER_SPECTATOR" then
+				if pPlayer:GetDiplomacy():HasMet(MajorList[j]) then
+					TriggerWritingBoost(pID, true)
+					break
+				end
+			end
+		end
+	end
+end
+
+function TriggerWritingBoost(playerID, bCheck)
+	local bApplyNoBoost = false
+	local pPlayer = Players[playerID]
+	local pTechs = pPlayer:GetTechs()
+	local result = (pTechs:HasBoostBeenTriggered(GameInfo.Technologies["TECH_WRITING"].Index) or pTechs:HasTech(GameInfo.Technologies["TECH_WRITING"].Index))
+	if bCheck == true then
+		if result then
+			bApplyNoBoost = true
+		end
+	end
+	if not bApplyNoBoost then
+		pPlayer:AttachModifierByID("BSM_WRITING_BOOST")
+		print("Writing boost Applied to "..tostring(PlayerConfigurations[playerID]:GetCivilizationTypeName()).." with PlayerID "..tostring(playerID))
+		result = pTechs:HasBoostBeenTriggered(GameInfo.Technologies["TECH_WRITING"].Index)
+		print("Test Boost Application. Result: ", result)
+	end
+end
+
+function OnPopCheckList(triggerplayerID, kParameters)
+	print("OnPopCheckList Started")
+	local list = {}
+	list = Game:GetProperty("TO_CHECK")
+	if list==nil then
+		return
+	end
+	if #list==0 then
+		print("No Elements?") 
+		return 
+	end
+	print(ArrayStrUtil(list))
+	print("Elements => Pass")
+	for i, playerID in ipairs(kParameters.value) do
+		if IDtoPos(list, playerID) == false then
+			print("Already Removed")
+			return
+		end
+		print("Remove from list start")
+		print(ArrayStrUtil(list))
+		filterArray(list, function(t,i,j) local v = t[i] return v~= playerID end)
+		print(ArrayStrUtil(list))
+		if #list > 0 then
+			Game:SetProperty("TO_CHECK", list)
+		else
+			Game:SetProperty("TO_CHECK", nil)
+		end
+	end
+end
+
+--Utils--
+function filterArray(t, fnKeep)
+    local j, n = 1, #t;
+
+    for i=1,n do
+        if (fnKeep(t, i, j)) then
+            if (i ~= j) then
+                t[j] = t[i];
+                t[i] = nil;
+            end
+            j = j + 1;
+        else
+            t[i] = nil;
+        end
+    end
+
+    return t;
+end
+
+function IDtoPos(List, SearchItem)
+	if SearchItem==nil then
+		return
+	end
+	for i, item in ipairs(List) do
+		if item == SearchItem then
+			return i;
+		end
+	end
+	print("IDtoPos: item not found")
+	return false
+end
+
+function ArrayStrUtil(list)
+	local debugstr = ""
+	for i,item in ipairs(list) do
+		debugstr = debugstr..tostring(item)..", "
+	end
+	return debugstr
+end
 --------------------------------------------------------------------------------
 
 function Initialize()
@@ -309,11 +467,17 @@ function Initialize()
 	if currentTurn == GameConfiguration.GetStartTurn() then
 		bLaunch = true;
 	end
-
-	Spec_Script_Init();
+	--print("Test G1", tostring(Players[0]:GetTechs():HasBoostBeenTriggered(GameInfo.Technologies["TECH_WRITING"].Index,true)))
+	--print("Test G2", tostring(Players[0]:GetTechs():HasBoostBeenTriggered(GameInfo.Technologies["TECH_WRITING"].Index,false)))
+	--print("Test G3", tostring(Players[0]:GetTechs():HasBoostBeenTriggered(GameInfo.Technologies["TECH_WRITING"].Index)))
 	GameEvents.CityBuilt.Add(OnCityBuilt )
-	GameEvents.PlayerTurnStarted.Add(OnPlayerTurnActivated);
-
+	GameEvents.ApplyWritingBoost.Add(OnApplyWritingBoost)
+	print("Writing boost handler attached")
+	GameEvents.OnGameTurnStarted.Add(OnGameTurnStartedRecalculate)
+	print("OnGameTurnStartedRecalculate Hook Added")
+	GameEvents.PopCheckList.Add(OnPopCheckList)
+	print("OnPopCheckList Hook Added")
+	Spec_Script_Init();
 end
 
 
