@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--Live BSM-->
-<!--<Mod id="c6e5ad32-0600-4a98-a7cd-5854a1abcaaf" version="123">-->
 <!--Test BSM-->
-<Mod id="8e1c6708-e129-4f42-870f-ba09f16eca78" version="126">
+<!--<Mod id="8e1c6708-e129-4f42-870f-ba09f16eca78" version="126">-->
+<!--Live BSM-->
+<Mod id="c6e5ad32-0600-4a98-a7cd-5854a1abcaaf" version="126">
     <Properties>
         <Name>LOC_BSM_TITLE</Name>
         <Description>Allows to play as an Observer. [NEWLINE]In the lobby players in the top 4 slots can choose the Spectator leader. [NEWLINE] In game use the diplomacy ribbon to click on leader and gain their POV and more.
