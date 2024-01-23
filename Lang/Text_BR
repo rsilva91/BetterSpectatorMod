@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GameData>
+  <LocalizedText>
+
+	<!-- New entries -->
+	<Replace Tag="BSM_SP_NAME" language="pt_BR">
+		<Text>Turno Automático do Espectador</Text>
+	</Replace>
+	<Replace Tag="BSM_SP_DESC" language="pt_BR">
+		<Text>Os turnos mudarão automaticamente assim que todos os jogadores controlados pela IA tiverem jogado (Padrão = Ligado).</Text>
+	</Replace>
+	<Replace Tag="LOC_ONE_OBS_NAME" language="pt_BR">
+		<Text>Expansão: [COLOR_Civ6Green]Um Observador[ENDCOLOR]</Text>
+	</Replace>
+	<Replace Tag="LOC_ONE_OBS_DESCRIPTION" language="pt_BR">
+		<Text>Ajuste as configurações da expansão para equilibrar a presença de um Observador. (As configurações da BBG também serão detectadas)</Text>
+	</Replace>
+	<Replace Tag="LOC_TWO_OBS_NAME" language="pt_BR">
+		<Text>Expansão: [COLOR_Civ6Green]Dois Observadores[ENDCOLOR]</Text>
+	</Replace>
+	<Replace Tag="LOC_TWO_OBS_DESCRIPTION" language="pt_BR">
+		<Text>Ajuste as configurações da expansão para equilibrar a presença de dois Observadores. (As configurações da BBG também serão detectadas)</Text>
+	</Replace>
+	<Replace Tag="LOC_THREE_OBS_NAME" language="pt_BR">
+		<Text>Expansão: [COLOR_Civ6Green]Três Observadores[ENDCOLOR]</Text>
+	</Replace>
+	<Replace Tag="LOC_THREE_OBS_DESCRIPTION" language="pt_BR">
+		<Text>Ajuste as configurações da expansão para equilibrar a presença de três Observadores. (As configurações da BBG também serão detectadas)</Text>
+	</Replace>
+	<Replace Tag="LOC_FOUR_OBS_NAME" language="pt_BR">
+		<Text>Expansão: [COLOR_Civ6Green]Quatro Observadores[ENDCOLOR]</Text>
+	</Replace>
+	<Replace Tag="LOC_FOUR_OBS_DESCRIPTION" language="pt_BR">
+		<Text>Ajuste as configurações da expansão para equilibrar a presença de quatro Observadores. (As configurações da BBG também serão detectadas)</Text>
+	</Replace>
+	<Replace Tag="BSM_TOURNAMENT_NAME" language="pt_BR">
+		<Text>Nome do Torneio</Text>
+	</Replace>
+	<Replace Tag="BSM_TEAM1_NAME" language="pt_BR">
+		<Text>Nome da Equipe 1</Text>
+	</Replace>
+	<Replace Tag="BSM_TEAM2_NAME" language="pt_BR">
+		<Text>Nome da Equipe 2</Text>
+	</Replace>
+	<Replace Tag="BSM_TEAM3_NAME" language="pt_BR">
+		<Text>Nome da Equipe 3</Text>
+	</Replace>
+	<Replace Tag="BSM_TEAM4_NAME" language="pt_BR">
+		<Text>Nome da Equipe 4</Text>
+	</Replace>
+
+
+	<!-- Civilization -->
+	<Row Tag="LOC_CIVILIZATION_SPECTATOR_NAME" Language="pt_BR">
+		<Text>Espectador</Text>
+	</Row>
+	<Row Tag="LOC_CIVILIZATION_SPECTATOR_DESCRIPTION" Language="pt_BR">
+		<Text>Espectador</Text>
+	</Row>
+	<Row Tag="LOC_CIVILIZATION_SPECTATOR_ADJECTIVE" Language="pt_BR">
+		<Text>Espectador</Text>
+	</Row>
+
+	<!-- Leader Name -->
+	<Row Tag="LOC_LEADER_SPECTATOR_NAME" Language="pt_BR">
+		<Text>[COLOR_Civ6Green]Espectador[ENDCOLOR]</Text>
+	</Row>
+
+	<!-- Civilization Traits -->
+	<Row Tag="LOC_TRAIT_CIVILIZATION_SPECTATOR_NAME" Language="pt_BR">
+		<Text></Text>
+	</Row>
+	<Row Tag="LOC_TRAIT_CIVILIZATION_SPECTATOR_DESCRIPTION" Language="pt_BR">
+		<Text>Você pode passar o mouse sobre os botões abaixo do seu retrato para obter mais informações.[NEWLINE]Novos relatórios acessíveis no menu de relatórios.</Text>
+	</Row>
+
+	<!-- Leader Traits -->
+	<Row Tag="LOC_TRAIT_LEADER_SPECTATOR_NAME" Language="pt_BR">
+		<Text>Espectador</Text>
+	</Row>
+	<Row Tag="LOC_TRAIT_LEADER_SPECTATOR_DESCRIPTION" Language="pt_BR">
+		<Text>Clique no retrato de um líder para obter a visão dele/dela.[NEWLINE]Você poderá então ver a árvore de tecnologia, escolhas de governo e mais.</Text>
+	</Row>
+
+	<!-- DOM_TEXT -->
+	<Row Tag="LOC_LEADER_SPECTATOR_DOM_TEXT" Language="pt_BR">
+		<Text>"Estou aqui para assistir."[NEWLINE]  [NEWLINE]          D. / Jack, o Narrador</Text>
+	</Row>
+
+
+	<!-- Civlization Citizen Names -->
+	<Row Tag="LOC_CITIZEN_SPECTATOR_MALE_1" Language="pt_BR">
+		<Text>Espectador</Text>
+	</Row>
+	<Row Tag="LOC_CITIZEN_SPECTATOR_FEMALE_1" Language="pt_BR">
+		<Text>Espectadora</Text>
+	</Row>
+
+
+	<!-- Civilization City Names-->
+	<Row Tag="LOC_CIVILIZATION_SPECTATOR_CITY_1" Language="pt_BR">
+		<Text>Espectáculo</Text>
+	</Row>
+
+	<!-- Notifications, Message is the Tag, Summary the description-->
+	<Row Tag="LOC_BSM_NOTIFICATION_DELAYED_B1_MESSAGE" Language="pt_BR">
+		<Text>Assentamento B1 Atrasado</Text>
+	</Row>
+	<Row Tag="LOC_BSM_NOTIFICATION_DELAYED_B1_SUMMARY" Language="pt_BR">
+		<Text>Primeira Cidade Atrasada</Text>
+	</Row>
+	<Row Tag="LOC_BSM_NOTIFICATION_B2_MESSAGE" Language="pt_BR">
+		<Text>B2 Assentado</Text>
+	</Row>
+	<Row Tag="LOC_BSM_NOTIFICATION_B2_SUMMARY" Language="pt_BR">
+		<Text>Segundo Assentamento</Text>
+	</Row>
+	<Row Tag="LOC_BSM_NOTIFICATION_B3_MESSAGE" Language="pt_BR">
+		<Text>B3 Assentado</Text>
+	</Row>
+	<Row Tag="LOC_BSM_NOTIFICATION_B3_SUMMARY" Language="pt_BR">
+		<Text>Terceiro Assentamento</Text>
+	</Row>
+	<Row Tag="LOC_BSM_NOTIFICATION_B10_MESSAGE" Language="pt_BR">
+		<Text>B10 Assentado!</Text>
+	</Row>
+	<Row Tag="LOC_BSM_NOTIFICATION_B10_SUMMARY" Language="pt_BR">
+		<Text>Este jogador acabou de fundar a décima cidade dele/dela</Text>
+	</Row>
+	<Row Tag="LOC_BSM_NOTIFICATION_B20_MESSAGE" Language="pt_BR">
+		<Text>B20 Assentado!</Text>
+	</Row>
+	<Row Tag="LOC_BSM_NOTIFICATION_B20_SUMMARY" Language="pt_BR">
+		<Text>Este jogador acabou de fundar a vigésima cidade dele/dela!!</Text>
+	</Row>
+	<Row Tag="LOC_BSM_NOTIFICATION_GOODY_MESSAGE" Language="pt_BR">
+		<Text>Recompensa de Vila Tomada</Text>
+	</Row>
+	<Row Tag="LOC_BSM_NOTIFICATION_GOV_CHANGE_MESSAGE" Language="pt_BR">
+		<Text>Mudança de Governo</Text>
+	</Row>
+	<Row Tag="LOC_BSM_NOTIFICATION_WONDER_STARTED_MESSAGE" Language="pt_BR">
+		<Text>Maravilha Iniciada</Text>
+	</Row>
+	<Row Tag="LOC_BSM_NOTIFICATION_PANTHEON_MESSAGE" Language="pt_BR">
+		<Text>Panteão Fundado</Text>
+	</Row>
+	<Row Tag="LOC_BSM_NOTIFICATION_SETTLER_MESSAGE" Language="pt_BR">
+		<Text>Colonizador Perdido</Text>
+	</Row>
+	<Row Tag="LOC_BSM_NOTIFICATION_SETTLER_SUMMARY" Language="pt_BR">
+		<Text>Um colonizador foi capturado!!</Text>
+	</Row>
+	<Row Tag="LOC_BSM_NOTIFICATION_FIRST_UNIT_MESSAGE" Language="pt_BR">
+		<Text>Primeira Unidade Mundial</Text>
+	</Row>
+	<Row Tag="LOC_BSM_NOTIFICATION_STRONG_GP_MESSAGE" Language="pt_BR">
+		<Text>Pessoa Ilustre-chave</Text>
+	</Row>
+	<Row Tag="LOC_BSM_NOTIFICATION_FIRST_DISTRICT_MESSAGE" Language="pt_BR">
+		<Text>Primeiro Distrito</Text>
+	</Row>
+  </LocalizedText>
+</GameData>
